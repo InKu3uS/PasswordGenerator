@@ -4,3 +4,8 @@
 body{
     background-color: black;
 }
+#showPassword span{
+    min-width: 100%;
+    word-wrap:break-word;
+    white-space: normal;
+}

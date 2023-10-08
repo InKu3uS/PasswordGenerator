@@ -9,13 +9,13 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <title>Password Generator</title>
   </head>
   <body>
     <div class="container my-5">
       <div class="row justify-content-md-center">
-        <div class="col-md-4 bg-dark text-light">
+        <div class="col-md-4 col-sm-3 col-lg-6 bg-dark text-light">
           <form>
             <div class="mb-3">
               <div class="my-3">
@@ -64,7 +64,7 @@
               <div class="d-grid gap-2 my-3" title="Let's do it!">
                 <button type="button" id="btnGenerate" class="btn btn-primary fw-bold">Generate Password</button>
               </div>
-              <div class="d-grid gap-2 my-3">
+              <div class="d-grid gap-2 my-3 justify-content-center" id="showPassword">
                 <span id="generatedPassword" class="badge bg-success"></span>
               </div>
           </form>
