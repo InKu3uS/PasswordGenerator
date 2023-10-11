@@ -18,10 +18,47 @@ function generateBase() {
     if (numbersCheck.checked) base += numbers;
     if (simbolsCheck.checked) base += symbols;
 
-    if(exclude.length > 0){
-        generatedPassword.textContent = generatePassword(excludeChars(base, exclude),length);
+    if (exclude.length > 0) {
+        generatedPassword.textContent = generatePassword(excludeChars(base, exclude), length);
     } else {
         generatedPassword.textContent = generatePassword(base, length);
+    }
+}
+
+function passwordTest(password) {
+    let message = "This password is secure";
+    if (password.length === 0) {
+        passwordResult.className = "bg-danger p-2 rounded";
+        passwordResult.textContent = "Insert a length for the password";
+        return;
+    }
+    if (password.length <= 8) {
+        message = "A password of 8 characters or less can be broken in 8 hours";
+        passwordResult.className = "bg-warning p-2 rounded";
+        passwordResult.textContent = message;
+        btnSave.classList.remove("invisible");
+        btnSave.classList.remove("visible");
+    }
+    if (password.length > 8 && password.length <= 16) {
+
+        passwordResult.className = "bg-warning p-2 rounded";
+        btnSave.classList.remove("invisible");
+        btnSave.classList.remove("visible");
+
+        if (!password.match(/[?.,;\-_!¡¿*%&$/()[\]{}|@<>#=]/g) || !password.match(/\d/g) || !password.match(/\d/g)) {
+            message = "A password between 9 and 16 characters must have uppercase and lowercase letters, numbers and symbols";
+        } else {
+            passwordResult.className = "bg-success p-2 rounded";
+        }
+        passwordResult.textContent = message;
+        btnSave.classList.remove("invisible");
+        btnSave.classList.remove("visible");
+    }
+    if (password.length > 16) {
+        passwordResult.className = "bg-success p-2 rounded";
+        passwordResult.textContent = message;
+        btnSave.classList.remove("invisible");
+        btnSave.classList.remove("visible");
     }
 }
 
@@ -37,9 +74,9 @@ function generateBase() {
  * @returns La función "excludeChars" devuelve la cadena "base" modificada después de eliminar todos
  * los caracteres especificados en la cadena "exclude".
  */
-function excludeChars(base, exclude){
+function excludeChars(base, exclude) {
     for (let i = 0; i < exclude.length; i++) {
-        base = base.replace(exclude.charAt(i),"");
+        base = base.replace(exclude.charAt(i), "");
     }
     return base;
 }
@@ -61,6 +98,7 @@ function generatePassword(base, length) {
         let random = Math.floor(Math.random() * base.length);
         password += base.charAt(random);
     }
+    passwordTest(password);
     return password;
 }
 
