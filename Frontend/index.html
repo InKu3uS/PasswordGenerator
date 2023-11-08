@@ -9,66 +9,133 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css" />
     <title>Password Generator</title>
   </head>
   <body>
     <div class="container my-5">
       <div class="row justify-content-md-center">
-        <div class="col-md-4 col-sm-3 col-lg-6 bg-dark text-light">
+        <div
+          class="col-md-8 col-sm-10 col-lg-6 bg-dark text-light rounded-2"
+          id="container"
+        >
           <form>
-            <div class="mb-3">
-              <div class="my-3">
-                <h2 class="text-center fw-bold">Password Generator 1.0</h2>
-              </div>
-              <div class="my-2" title="Lenght for password">
-                <label for="passwordLength" class="form-label fw-bold">Length</label>
-                <input type="number" class="form-control" id="passwordLength" min="1"/>
-              </div>
-              
-              <div class="my-2" title="Write in succession the letters you want to exclude from the password">
-                <label for="excludeLetter" class="form-label fw-bold">Exclude Letters (optional)</label>
-                <input type="text" class="form-control" id="excludeLetter"/>
-              </div>
-             
-              <div class="my-2" title="Write in succession the numbers you want to exclude from the password">
-                <label for="excludeNumber" class="form-label fw-bold">Exclude Numbers (optional)</label>
-                <input type="text" class="form-control" id="excludeNumber"/>
-              </div>
-
-              <div class="my-2" title="Write in succession the symbols you want to exclude from the password">
-                <label for="excludeSymbols" class="form-label fw-bold">Exclude Symbols (optional)</label>
-                <input type="text" class="form-control" id="excludeSymbol"/>
-              </div>
-              
-            <div class="form-check my-3" title="Include numbers in password?">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="numbersCheck"
-              />
-              <label class="form-check-label fw-bold" for="numbersCheck"
-                >Include numbers</label
-              >
+            <div class="my-3">
+              <h2 class="text-center fw-bold">Password Generator 1.0</h2>
+              <hr>
             </div>
-            <div class="form-check my-3" title="Include symbols in password?">
+            <div
+              class="my-2 d-grid justify-content-center col-12 text-center"
+              title="Lenght for password"
+            >
+              <h5 class="form-label fw-bold"
+                >Length</h5
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="passwordLength"
+                min="1"
+              />
+            </div>
+            <!--Contenido del password-->
+            <hr />
+            <h5 class="d-flex justify-content-center fw-bold">Characters</h5>
+            <div
+              class="d-inline-flex col-12 flex-wrap"
+              id="checkboxes"
+            >
+              <div
+                class="form-check my-3 col-12 col-lg-6 ps-5 d-flex justify-content-center"
+                title="Include lower case letters in password?"
+              >
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="lowerCheck"
+                />
+                <label class="form-check-label fw-bold ps-2" for="lowerCheck"
+                  >Lowercase letters</label
+                >
+              </div>
+              <div
+                class="form-check my-3 col-12 col-lg-6 ps-5 d-flex justify-content-center"
+                title="Include upper case letters in password?"
+              >
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="upperCheck"
+                />
+                <label class="form-check-label fw-bold ps-2" for="upperCheck"
+                  >Uppercase letters</label
+                >
+              </div>
+              <div
+                class="form-check my-3 col-12 col-lg-6 ps-5 d-flex justify-content-center"
+                title="Include numbers in password?"
+              >
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="numbersCheck"
+                />
+                <label class="form-check-label fw-bold ps-2" for="numbersCheck"
+                  >Numbers</label
+                >
+              </div>
+              <div
+                class="form-check my-3 col-12 col-lg-6 ps-5 d-flex justify-content-center"
+                title="Include symbols in password?"
+              >
                 <input
                   type="checkbox"
                   class="form-check-input"
                   id="simbolsCheck"
                 />
-                <label class="form-check-label fw-bold" for="simbolsCheck"
-                  >Include simbols</label
+                <label class="form-check-label fw-bold ps-2" for="simbolsCheck"
+                  >Symbols</label
                 >
               </div>
-              <div class="d-grid gap-2 my-3" title="Let's do it!">
-                <button type="button" id="btnGenerate" class="btn btn-primary fw-bold">Generate Password</button>
-              </div>
-              <div class="d-grid gap-2 my-3 justify-content-center text-center" id="showPassword">
-                <span id="generatedPassword" class="badge bg-secondary"></span>
-                <span id="passwordResult"></span>
-                <button id="btnSave" class="btn btn-success invisible">Save Password</button>
-              </div>
+            </div>
+            <hr />
+            <!---->
+
+            <!-- Exclusion de letras, numeros y simbolos-->
+            <div
+              class="my-2 d-grid justify-content-center text-center"
+              title="Write in succession the characters you want to exclude from the password"
+            >
+              <label for="excludeCharacters" class="form-label fw-bold"
+                >Exclude Characters (optional)</label
+              >
+              <input type="text" class="form-control" id="excludeCharacters" />
+            </div>
+
+            <!---->
+            <!--Botones y resultado-->
+            <div class="d-flex col-12 my-3" title="Let's do it!">
+              <button
+                type="button"
+                id="btnGenerate"
+                class="btn btn-primary fw-bold col-6 mx-auto"
+              >
+                Generate Password
+              </button>
+            </div>
+            <div
+              class="d-grid gap-2 col-12 my-3 justify-content-center text-center"
+              id="showPassword"
+            >
+              <span id="generatedPassword" class="badge bg-secondary"></span>
+              <span id="passwordResult"></span>
+              <button
+                id="btnSave"
+                class="btn btn-success invisible col-4 mx-auto"
+              >
+                Save Password
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -6,15 +6,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function generateBase() {
 
-    let exclude = excludeLetter.value;
-    exclude += excludeNumber.value;
-    exclude += excludeSymbol.value;
+    let exclude = excludeCharacters.value;
 
     let length = parseInt(passwordLength.value);
-    let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let base = "";
+    let lower = "abcdefghijklmnopqrstuvwxyz";
+    let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let numbers = "0123456789";
-    let symbols = ".?,;-_!¡¿*%&$/()[]{}|@<>#=";
+    let symbols = ".?,;-_!¡¿*%&$/()[]{}|@<>#= ";
 
+
+    if (lowerCheck.checked) base += lower;
+    if(upperCheck.checked) base += upper;
     if (numbersCheck.checked) base += numbers;
     if (simbolsCheck.checked) base += symbols;
 
@@ -29,7 +32,7 @@ function passwordTest(password) {
     let message = "This password is secure";
     if (password.length === 0) {
         passwordResult.className = "bg-danger p-2 rounded";
-        passwordResult.textContent = "Insert a length for the password";
+        passwordResult.textContent = "Insert a length for the password and make sure any type of character is checked";
         return;
     }
     if (password.length <= 8) {
@@ -76,7 +79,7 @@ function passwordTest(password) {
  */
 function excludeChars(base, exclude) {
     for (let i = 0; i < exclude.length; i++) {
-        base = base.replace(exclude.charAt(i), "");
+        base = base.replaceAll(exclude.charAt(i), "");
     }
     return base;
 }
